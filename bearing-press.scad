@@ -95,14 +95,9 @@ module handle(
         cylinder(d=center_d, h=center_h, $fn=fn);
         // horizontal bar (centered on ground)
         translate([0, 0, handle_d/2])
-        rotate([0,90,0])
-            cylinder(d=handle_d, h=handle_len - handle_d, center=true, $fn=fn);
-
-        // rounded ends
-        translate([-handle_len/2 + handle_d/2, 0, handle_d/2])
-        sphere(d=handle_d, $fn=fn);
-        translate([ handle_len/2 - handle_d/2, 0, handle_d/2])
-        sphere(d=handle_d, $fn=fn);
+                rotate([0,90,0])
+                  rotate([0,0,180/8])
+                        cylinder(d=handle_d / cos(180/8), h=handle_len - handle_d, center=true, $fn=8);
     }
     // rod hole through vertical only
     cylinder(d=rod_d, h=center_h, $fn=fn);
